@@ -148,83 +148,31 @@ $(document).ready(function(){
 
     //..funzione filtro
 
-    selectValue.click(function(){
+    selectValue.change(function(){
         const valu = selectValue.val();
 
-        if (valu == 'animal') {
-            const container = $('.container');
-            container.empty();
+        const filtered = iconColor.filter((element) => {
 
-            iconColor.forEach((element) => {
-        
-                const {name,family,prefix,type, colore} = element;
-                
-                if (type == 'animal'){
-                    
-                    container.append(`
-                    <div class="box-icon">
-                        <i class="${family} ${prefix}${name}"      style="color:${colore}"></i>
-                        ${name}
-                    </div>
-                `)
-                }
-                
-            })
-        } else if (valu == 'vegetable') {
-            const container = $('.container');
-            container.empty();
+            if (valu == 'all') {
+                return element
+            }
+            return element.type == valu
+        })
+        const container = $('.container');
+        container.empty();
 
-            iconColor.forEach((element) => {
+        filtered.forEach((element) => {
         
-                const {name,family,prefix,type, colore} = element;
-                
-                if (type == 'vegetable'){
-                    
-                    container.append(`
-                    <div class="box-icon">
-                        <i class="${family} ${prefix}${name}"      style="color:${colore}"></i>
-                        ${name}
-                    </div>
-                `)
-                }
-                
-            })
-        } else if (valu == 'user') {
-            const container = $('.container');
-            container.empty();
-
-            iconColor.forEach((element) => {
-        
-                const {name,family,prefix,type, colore} = element;
-                
-                if (type == 'user'){
-                    
-                    container.append(`
-                    <div class="box-icon">
-                        <i class="${family} ${prefix}${name}"      style="color:${colore}"></i>
-                        ${name}
-                    </div>
-                `)
-                }
-                
-            })
-        } else {
-            const container = $('.container');
-            container.empty();
-
-            iconColor.forEach((element) => {
-        
-                const {name,family,prefix,type, colore} = element;
-                
-                    container.append(`
-                    <div class="box-icon">
-                        <i class="${family} ${prefix}${name}"      style="color:${colore}"></i>
-                        ${name}
-                    </div>
-                `)
-                
-            })
-        }
+            const {name,family,prefix,type, colore} = element;
+            
+                container.append(`
+                <div class="box-icon">
+                    <i class="${family} ${prefix}${name}"      style="color:${colore}"></i>
+                    ${name}
+                </div>
+            `)
+            }
+        )
         
     });
 
