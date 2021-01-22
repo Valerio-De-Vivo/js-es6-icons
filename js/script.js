@@ -99,7 +99,45 @@ $(document).ready(function(){
       ];
 
 
-      console.log(icons);
+    const colori = ['blue', 'orange', 'purple'];
+
+    //.creo l array dei tre tipi
+    const iconType = [];
+
+    icons.forEach((element) => {
+        if (!iconType.includes(element.type)) {
+            iconType.push(element.type)
+        }
+    })
+
+    //.mappo icon e aggiungo il colore in base al tipo
+
+    const iconColor = icons.map((element) => {
+        const indice = iconType.indexOf(element.type);
+        console.log(indice);
+
+        return {
+            ...element,
+            colore: colori[indice],
+        }
+    })
+
+    //.stampo le icone
+
+    iconColor.forEach((element) => {
+        const container = $('.container');
+
+        const {name,family,prefix,type, colore} = element;
+
+        container.append(`
+        <div class="box-icon">
+            <i class="${family} ${prefix}${name}" style="color:${colore}"></i>
+            ${name}
+        </div>
+        `)
+    })
+    
+
 
 
 
